@@ -17,10 +17,14 @@ public class ArraysAndStringImpl extends ArraysAndStrings {
   @Override
   public boolean isUnique(String s) {
     Set<Character> set = new HashSet<>();
-    if (s == null || s.isEmpty()) return true;
+    if (s == null || s.isEmpty()) {
+      return true;
+    }
 
     for (char c : s.toCharArray()) {
-      if (set.contains(c)) return false;
+      if (set.contains(c)) {
+        return false;
+      }
       set.add(c);
     }
     return true;
@@ -34,19 +38,27 @@ public class ArraysAndStringImpl extends ArraysAndStrings {
    */
   @Override
   public boolean isPermutation(String s1, String s2) {
-    if (s1 == null && s2 == null) return true;
-    if (s1 == null || s2 == null) return false;
-    if (s1.length() != s2.length()) return false;
-
-    Map<Character, Integer> map = new HashMap<>();
-    for(char c : s1.toCharArray()) {
-      int cnt = map.containsKey(c) ? map.get(c) : 0;
-      map.put(c, cnt+1);
+    if (s1 == null && s2 == null) {
+      return true;
+    }
+    if (s1 == null || s2 == null) {
+      return false;
+    }
+    if (s1.length() != s2.length()) {
+      return false;
     }
 
-    for(char c: s1.toCharArray()) {
-      if (!map.containsKey(c) || map.get(c) == 0) return false;
-      map.put(c, map.get(c)-1);
+    Map<Character, Integer> map = new HashMap<>();
+    for (char c : s1.toCharArray()) {
+      int cnt = map.containsKey(c) ? map.get(c) : 0;
+      map.put(c, cnt + 1);
+    }
+
+    for (char c : s1.toCharArray()) {
+      if (!map.containsKey(c) || map.get(c) == 0) {
+        return false;
+      }
+      map.put(c, map.get(c) - 1);
     }
     return true;
   }
@@ -63,8 +75,22 @@ public class ArraysAndStringImpl extends ArraysAndStrings {
    * @return
    */
   @Override
-  public String urlIfy(char[] ch, int length) {
-    return super.urlIfy(ch, length);
+  public void urlIfy(char[] ch, int length) {
+    if (length <= 0) {
+      return;
+    }
+    int i = ch.length - 1;
+    int j = length - 1;
+    while (j >= 0) {
+      if (ch[j] == ' ') {
+        ch[i--] = '0';
+        ch[i--] = '2';
+        ch[i--] = '%';
+      } else {
+        ch[i--] = ch[j];
+      }
+      j--;
+    }
   }
 
   /**
@@ -79,7 +105,24 @@ public class ArraysAndStringImpl extends ArraysAndStrings {
    */
   @Override
   public boolean isPalindromePermutation(String s) {
-    return super.isPalindromePermutation(s);
+    if (s == null || s.length() <= 1) {
+      return true;
+    }
+    Set<Character> set = new HashSet<>();
+    int len = 0;
+    for (char c : s.toUpperCase().toCharArray()) {
+      if (c == ' ') {
+        continue;
+      }
+      if (set.contains(c)) {
+        set.remove(c);
+      } else {
+        set.add(c);
+      }
+      len++;
+    }
+
+    return (len % 2 == 0) ? set.isEmpty() : (set.size() == 1);
   }
 
   /**
@@ -95,7 +138,38 @@ public class ArraysAndStringImpl extends ArraysAndStrings {
    */
   @Override
   public boolean isOneEditAway(String s1, String s2) {
-    return super.isOneEditAway(s1, s2);
+    if (s1 == null && s2 == null) {
+      return true;
+    }
+    String first = s1, second = s2;
+    if (s1.length() > s2.length()) {
+      first = s2;
+      second = s1;
+    }
+    if (s1.length() - s2.length() > 1) {
+      return false;
+    }
+
+    boolean foundDiff = false;
+    int i = 0, j = 0;
+    while (i < s1.length() && j < s2.length()) {
+      if (s1.charAt(i) != s2.charAt(j)) {
+        if (foundDiff) {
+          return false;
+        }
+        foundDiff = true;
+        if (s2.length() > s1.length()) {
+          j++;
+        } else {
+          i++;
+          j++;
+        }
+      } else {
+        i++;
+        j++;
+      }
+    }
+    return true;
   }
 
   /**
@@ -108,7 +182,28 @@ public class ArraysAndStringImpl extends ArraysAndStrings {
    */
   @Override
   public String compressedString(String s) {
-    return super.compressedString(s);
+    if (s == null || s.length() <= 1) {
+      return s;
+    }
+    StringBuilder sb = new StringBuilder();
+    char prev = s.charAt(0);
+    sb.append(prev);
+    int i = 1;
+    int cnt = 1;
+    while (i < s.length()) {
+      if (s.charAt(i) == prev) {
+        i++;
+        cnt++;
+      } else {
+        sb.append(cnt);
+        cnt = 1;
+        prev = s.charAt(i++);
+        sb.append(prev);
+      }
+    }
+    sb.append(cnt);
+
+    return sb.length() < s.length() ? sb.toString() : s;
   }
 
   /**
@@ -118,8 +213,8 @@ public class ArraysAndStringImpl extends ArraysAndStrings {
    * @param matrix
    */
   @Override
-  public void rotateMetrix(int[][] matrix) {
-    super.rotateMetrix(matrix);
+  public void rotateMatrix(int[][] matrix) {
+    super.rotateMatrix(matrix);
   }
 
   /**
@@ -129,7 +224,67 @@ public class ArraysAndStringImpl extends ArraysAndStrings {
    */
   @Override
   public void zeroMatrix(int[][] matrix) {
-    super.zeroMatrix(matrix);
+    boolean firstRow = false, firstCol = false;
+    if (matrix == null || matrix.length == 0) return;
+    int rows = matrix.length, cols = matrix[0].length;
+
+    //Find if the first col needs to be zeroed out later
+    for (int i = 0; i < rows; i++) {
+      if (matrix[i][0] == 0) {
+        firstCol = true;
+        break;
+      }
+    }
+
+    //Find if the first row needs to be zeroed out later
+    for (int i = 0; i < cols; i++) {
+      if (matrix[0][i] == 0) {
+        firstRow = true;
+        break;
+      }
+    }
+
+    //set corresponding first row or col val to 0 for any zero in the matrix
+    for (int i = 1; i < rows; i++) {
+      for (int j = 1; j < cols; j++) {
+        if (matrix[i][j] == 0) {
+          matrix[i][0] = 0;
+          matrix[0][j] = 0;
+        }
+      }
+    }
+
+    //Zero out necessary rows
+    for (int i = 1; i < rows; i++) {
+      if (matrix[i][0] == 0) {
+        for (int j = 1; j < cols; j++) {
+          matrix[i][j] = 0;
+        }
+      }
+    }
+
+    //Zero out necessary cols
+    for (int i = 1; i < cols; i++) {
+      if (matrix[0][i] == 0) {
+        for (int j = 1; j < rows; j++) {
+          matrix[j][i] = 0;
+        }
+      }
+    }
+
+    //Zero out first row
+    if (firstRow) {
+      for (int i = 0; i < cols; i++) {
+        matrix[0][i] = 0;
+      }
+    }
+
+    //Zero out first col
+    if (firstCol) {
+      for (int i = 0; i < rows; i++) {
+        matrix[i][0] = 0;
+      }
+    }
   }
 
   /**
@@ -142,17 +297,6 @@ public class ArraysAndStringImpl extends ArraysAndStrings {
    */
   @Override
   public boolean isRotation(String s1, String s2) {
-    return super.isRotation(s1, s2);
-  }
-
-  /**
-   * 16.8 (Page 182): Given any integer, print an English Phrase that describes the integer.
-   * Example: 1234 -> "One Thousand Two Hundred Thirty Four"
-   * @param n
-   * @return
-   */
-  @Override
-  public String englishInteger(int n) {
-    return super.englishInteger(n);
+    return s1.length() == s2.length() && isSubString(s1+s1, s2);
   }
 }
