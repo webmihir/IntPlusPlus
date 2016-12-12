@@ -215,7 +215,7 @@ public class ArraysAndStringImpl extends ArraysAndStrings {
   @Override
   public void rotateMatrix(int[][] matrix) {
     int n = matrix.length;
-    for (int layer = 0; layer < n/2; layer++) {
+    for (int layer = 0; layer < n / 2; layer++) {
       int first = layer;
       int last = n - layer - 1;
       for (int i = first; i < last; i++) {
@@ -225,13 +225,13 @@ public class ArraysAndStringImpl extends ArraysAndStrings {
         int top = matrix[first][i];
 
         //left -> top
-        matrix[first][i] = matrix[last-offset][first];
+        matrix[first][i] = matrix[last - offset][first];
 
         //bottom -> left
-        matrix[last-offset][first] = matrix[last][last-offset];
+        matrix[last - offset][first] = matrix[last][last - offset];
 
         //right -> bottom
-        matrix[last][last-offset] = matrix[i][last];
+        matrix[last][last - offset] = matrix[i][last];
 
         //top -> right
         matrix[i][last] = top;
@@ -247,7 +247,9 @@ public class ArraysAndStringImpl extends ArraysAndStrings {
   @Override
   public void zeroMatrix(int[][] matrix) {
     boolean firstRow = false, firstCol = false;
-    if (matrix == null || matrix.length == 0) return;
+    if (matrix == null || matrix.length == 0) {
+      return;
+    }
     int rows = matrix.length, cols = matrix[0].length;
 
     //Find if the first col needs to be zeroed out later
@@ -319,6 +321,6 @@ public class ArraysAndStringImpl extends ArraysAndStrings {
    */
   @Override
   public boolean isRotation(String s1, String s2) {
-    return s1.length() == s2.length() && isSubString(s1+s1, s2);
+    return s1.length() == s2.length() && isSubString(s1 + s1, s2);
   }
 }

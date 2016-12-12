@@ -1,5 +1,6 @@
 package com.webmihir.IntPlusPlus.interfaces.ctci;
 
+import com.webmihir.IntPlusPlus.interfaces.common.ListNode;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 
@@ -9,7 +10,9 @@ public abstract class LinkedLists {
    * How would you solve this problem if a temporary buffer was not allowed
    * @param head
    */
-  public void removeDupes(ListNode head) { throw new NotImplementedException(); }
+  public void removeDupes(ListNode head) {
+    throw new NotImplementedException();
+  }
 
   /**
    * 2.2 (Page 94): Implement an algorithm to find the k-th to last element of a singly linked list
@@ -17,14 +20,18 @@ public abstract class LinkedLists {
    * @param k
    * @return
    */
-  public ListNode kthToLast(ListNode head, int k)  { throw new NotImplementedException(); }
+  public ListNode kthToLast(ListNode head, int k) {
+    throw new NotImplementedException();
+  }
 
   /**
    * 2.3 (Page 94): Implement an algorithm to delete a node in the middle of a singly linked list
    * given access to only that node
    * @param node
    */
-  public void deleteMiddleNode(ListNode node)  { throw new NotImplementedException(); }
+  public void deleteMiddleNode(ListNode node) {
+    throw new NotImplementedException();
+  }
 
   /**
    * 2.4 (Page 94): Write code to partition a linked list around a value x, such that all nodes less than x come before
@@ -37,7 +44,9 @@ public abstract class LinkedLists {
    * @param val
    * @return
    */
-  public ListNode partitionList(ListNode head, int val) { throw new NotImplementedException(); }
+  public ListNode partitionList(ListNode head, int val) {
+    throw new NotImplementedException();
+  }
 
   /**
    * 2.5 (Page 94): You have two numbers represented by a LinkedList, where each node contains a single digit.
@@ -51,7 +60,9 @@ public abstract class LinkedLists {
    * @param list2
    * @return
    */
-  public ListNode sumLists(ListNode list1, ListNode list2) { throw new NotImplementedException(); }
+  public ListNode sumLists(ListNode list1, ListNode list2) {
+    throw new NotImplementedException();
+  }
 
   /** 2.5 (Page 94) Follow-up: For the above question, suppose the digits are stored in forward order.
    * How would you solve it then?
@@ -59,14 +70,18 @@ public abstract class LinkedLists {
    * @param list2
    * @return
    */
-  public ListNode sumLists2(ListNode list1, ListNode list2) { throw new NotImplementedException(); }
+  public ListNode sumLists2(ListNode list1, ListNode list2) {
+    throw new NotImplementedException();
+  }
 
   /**
    * 2.6 (Page 95): Write a function to check if a LinkedList is a palindrome
    * @param head
    * @return
    */
-  public boolean isPalindrome(ListNode head) { throw new NotImplementedException(); }
+  public boolean isPalindrome(ListNode head) {
+    throw new NotImplementedException();
+  }
 
   /**
    * 2.7 (Page 95): Given two Singly Linked List, determine if the two lists intersect, and return the intersecting node.
@@ -77,7 +92,9 @@ public abstract class LinkedLists {
    * @param list2
    * @return
    */
-  public ListNode findIntersection(ListNode list1, ListNode list2) { throw new NotImplementedException(); }
+  public ListNode findIntersection(ListNode list1, ListNode list2) {
+    throw new NotImplementedException();
+  }
 
   /**
    * 2.8 (Page 95): Given a circular linked list, implement and algorithm that returns the node at the beginning of the loop.
@@ -87,41 +104,7 @@ public abstract class LinkedLists {
    * @param head
    * @return
    */
-  public ListNode findLoop(ListNode head) { throw new NotImplementedException(); }
-
-  public static class ListNode {
-    public ListNode next;
-    public int val;
-
-    public ListNode() { }
-
-    public ListNode(int val) {
-      this(val, null);
-    }
-
-    public ListNode(int val, ListNode next) {
-      this.val = val;
-      this.next = next;
-    }
-
-    @Override
-    public String toString() {
-      StringBuilder sb = new StringBuilder();
-      sb.append(this.val);
-      ListNode next = this.next;
-      ListNode fast = (next == null) ? null : next.next;
-      while (next != null) {
-        sb.append(" --> ");
-        sb.append(next.val);
-        next = next.next;
-        if (fast != null) fast = fast.next;
-        if (fast != null) fast = fast.next;
-        if (next == fast || fast.next == next) {
-          sb = new StringBuilder("<Looped List>");
-          break;
-        }
-      }
-      return sb.toString();
-    }
+  public ListNode findLoop(ListNode head) {
+    throw new NotImplementedException();
   }
 }

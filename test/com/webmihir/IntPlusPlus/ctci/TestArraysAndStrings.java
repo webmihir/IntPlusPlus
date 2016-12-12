@@ -3,15 +3,10 @@ package com.webmihir.IntPlusPlus.ctci;
 import com.webmihir.IntPlusPlus.BaseTest;
 import com.webmihir.IntPlusPlus.dataproviders.CtciDataProviders;
 import com.webmihir.IntPlusPlus.interfaces.ctci.ArraysAndStrings;
+import java.util.Arrays;
+import org.testng.annotations.Test;
 
 import static org.testng.Assert.*;
-
-import java.lang.reflect.Method;
-import java.util.Arrays;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 
 public class TestArraysAndStrings extends BaseTest {
@@ -82,65 +77,52 @@ public class TestArraysAndStrings extends BaseTest {
 
   @Test(dataProvider = "arraysandstrings", dataProviderClass = CtciDataProviders.class)
   public void testRotateMatrix(ArraysAndStrings testClass) {
-    int[][] matrix = {
-        {1, 2, 3, 4, 5, 6},
-        {7, 8, 9, 10, 11, 12},
-        {13, 14, 15, 16, 17, 18},
-        {19, 20, 21, 22, 23, 24},
-        {25, 26, 27, 28, 29, 30},
-        {31, 32, 33, 34, 35, 36}
-    };
+    int[][] matrix =
+        {{1, 2, 3, 4, 5, 6}, {7, 8, 9, 10, 11, 12}, {13, 14, 15, 16, 17, 18}, {19, 20, 21, 22, 23, 24}, {25, 26, 27, 28, 29, 30}, {31, 32, 33, 34, 35, 36}};
     testClass.rotateMatrix(matrix);
-    super.assertEquals(matrix, new int[][] {
-        {31, 25, 19, 13, 7, 1},
-        {32, 26, 20, 14, 8, 2},
-        {33, 27, 21, 15, 9, 3},
-        {34, 28, 22, 16, 10, 4},
-        {35, 29, 23, 17, 11, 5},
-        {36, 30, 24, 18, 12, 6}
-    });
+    super.assertEquals(matrix,
+        new int[][]{{31, 25, 19, 13, 7, 1}, {32, 26, 20, 14, 8, 2}, {33, 27, 21, 15, 9, 3}, {34, 28, 22, 16, 10, 4}, {35, 29, 23, 17, 11, 5}, {36, 30, 24, 18, 12, 6}});
 
-    matrix = new int[][] { {1, 2, 3}, {4, 5, 6}, {7, 8, 9} };
+    matrix = new int[][]{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
     testClass.rotateMatrix(matrix);
-    super.assertEquals(matrix, new int[][] { {7, 4, 1}, {8, 5, 2}, {9, 6, 3} });
+    super.assertEquals(matrix, new int[][]{{7, 4, 1}, {8, 5, 2}, {9, 6, 3}});
 
-    matrix = new int[][] { {1, 2}, {3, 4} };
+    matrix = new int[][]{{1, 2}, {3, 4}};
     testClass.rotateMatrix(matrix);
-    super.assertEquals(matrix, new int[][] { {3, 1}, {4, 2} });
+    super.assertEquals(matrix, new int[][]{{3, 1}, {4, 2}});
 
-    matrix = new int[][] { {1} };
+    matrix = new int[][]{{1}};
     testClass.rotateMatrix(matrix);
-    super.assertEquals(matrix, new int[][] { {1} });
+    super.assertEquals(matrix, new int[][]{{1}});
   }
 
   @Test(dataProvider = "arraysandstrings", dataProviderClass = CtciDataProviders.class)
   public void testZeroMatrix(ArraysAndStrings testClass) {
-    final int[][] matrix = {
-        {0, 1, 2, 3, 4},
-        {5, 6, 7, 8, 9},
-        {10, 11, 12, 13, 14},
-        {15, 16, 17, 18, 19}
-    };
+    final int[][] matrix = {{0, 1, 2, 3, 4}, {5, 6, 7, 8, 9}, {10, 11, 12, 13, 14}, {15, 16, 17, 18, 19}};
 
     int[][] testMatrix = clone(matrix);
     testClass.zeroMatrix(testMatrix);
-    super.assertEquals(testMatrix, new int[][] { {0, 0, 0, 0, 0}, {0, 6, 7, 8, 9}, {0, 11, 12, 13, 14}, {0, 16, 17, 18, 19} });
+    super.assertEquals(testMatrix,
+        new int[][]{{0, 0, 0, 0, 0}, {0, 6, 7, 8, 9}, {0, 11, 12, 13, 14}, {0, 16, 17, 18, 19}});
 
     testMatrix = clone(matrix);
     Arrays.fill(testMatrix[0], 0);
     testClass.zeroMatrix(testMatrix);
-    super.assertEquals(testMatrix, new int[][] { {0,0,0,0,0},{0,0,0,0,0},{0,0,0,0,0},{0,0,0,0,0}});
+    super.assertEquals(testMatrix, new int[][]{{0, 0, 0, 0, 0}, {0, 0, 0, 0, 0}, {0, 0, 0, 0, 0}, {0, 0, 0, 0, 0}});
 
     testMatrix = clone(matrix);
-    for (int i = 0; i < testMatrix.length; i++) testMatrix[i][0] = 0;
+    for (int i = 0; i < testMatrix.length; i++) {
+      testMatrix[i][0] = 0;
+    }
     testClass.zeroMatrix(testMatrix);
-    super.assertEquals(testMatrix, new int[][] { {0,0,0,0,0},{0,0,0,0,0},{0,0,0,0,0},{0,0,0,0,0}});
+    super.assertEquals(testMatrix, new int[][]{{0, 0, 0, 0, 0}, {0, 0, 0, 0, 0}, {0, 0, 0, 0, 0}, {0, 0, 0, 0, 0}});
 
     testMatrix = clone(matrix);
     testMatrix[0][0] = 100;
     testMatrix[1][1] = 0;
     testClass.zeroMatrix(testMatrix);
-    super.assertEquals(testMatrix, new int[][] { {100, 0, 2, 3, 4}, {0, 0, 0, 0, 0}, {10, 0, 12, 13, 14}, {15, 0, 17, 18, 19}});
+    super.assertEquals(testMatrix,
+        new int[][]{{100, 0, 2, 3, 4}, {0, 0, 0, 0, 0}, {10, 0, 12, 13, 14}, {15, 0, 17, 18, 19}});
   }
 
   @Test(dataProvider = "arraysandstrings", dataProviderClass = CtciDataProviders.class)

@@ -1,19 +1,13 @@
 package com.webmihir.IntPlusPlus;
 
-import com.webmihir.IntPlusPlus.interfaces.ctci.LinkedLists;
-import java.lang.reflect.Method;
-import java.lang.reflect.Parameter;
-import java.util.Arrays;
+import com.webmihir.IntPlusPlus.interfaces.common.ListNode;
 import org.testng.Assert;
-import org.testng.SkipException;
-import org.testng.annotations.BeforeMethod;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import static org.testng.Assert.*;
 
 
 public class BaseTest {
-  //@BeforeMethod
+  /*@BeforeMethod
   public void beforeTest(Method m) throws Exception {
     String testMethod = m.getName();
     String prodMethod = Character.toLowerCase(testMethod.charAt(4)) + testMethod.substring(5);
@@ -37,7 +31,7 @@ public class BaseTest {
         }
       }
     }
-  }
+  }*/
 
   protected void assertEquals(int[][] actual, int[][] expected) {
     Assert.assertEquals(expected.length, actual.length,
@@ -48,7 +42,7 @@ public class BaseTest {
     for (int i = 0; i < expected.length; i++) {
       for (int j = 0; j < expected[0].length; j++) {
         Assert.assertEquals(expected[i][j], actual[i][j],
-            "expected["+i+"]["+j+"]="+expected[i][j]+", actual["+i+"]["+j+"]="+actual[i][j]);
+            "expected[" + i + "][" + j + "]=" + expected[i][j] + ", actual[" + i + "][" + j + "]=" + actual[i][j]);
       }
     }
   }
@@ -73,8 +67,8 @@ public class BaseTest {
     Assert.assertEquals(actual, expected);
   }
 
-  protected void assertEquals(LinkedLists.ListNode actual, LinkedLists.ListNode expected) {
-    LinkedLists.ListNode l1 = actual, l2 = expected;
+  protected void assertEquals(ListNode actual, ListNode expected) {
+    ListNode l1 = actual, l2 = expected;
 
     while (l1 != null && l2 != null) {
       assertEquals(l1.val, l2.val);
@@ -86,12 +80,15 @@ public class BaseTest {
     assertTrue(l2 == null);
   }
 
-  protected void assertEquals(LinkedLists.ListNode actual, LinkedLists.ListNode expected, boolean singleNode) {
-    if (singleNode) assertTrue(actual == expected);
-    else assertEquals(actual, expected);
+  protected void assertEquals(ListNode actual, ListNode expected, boolean singleNode) {
+    if (singleNode) {
+      assertTrue(actual == expected);
+    } else {
+      assertEquals(actual, expected);
+    }
   }
 
-  public void printList(LinkedLists.ListNode head) {
+  public void printList(ListNode head) {
     System.out.print("List: ");
 
     if (head == null) {
@@ -102,19 +99,21 @@ public class BaseTest {
     System.out.println();
   }
 
-  protected LinkedLists.ListNode createList(int headVal, int... vals) {
-    LinkedLists.ListNode head = new LinkedLists.ListNode(headVal);
-    LinkedLists.ListNode prev = head;
+  protected ListNode createList(int headVal, int... vals) {
+    ListNode head = new ListNode(headVal);
+    ListNode prev = head;
     for (int val : vals) {
-      prev.next = new LinkedLists.ListNode(val);
+      prev.next = new ListNode(val);
       prev = prev.next;
     }
     return head;
   }
 
-  protected LinkedLists.ListNode tail(LinkedLists.ListNode head) {
-    LinkedLists.ListNode cur = head;
-    while (cur.next != null) cur = cur.next;
+  protected ListNode tail(ListNode head) {
+    ListNode cur = head;
+    while (cur.next != null) {
+      cur = cur.next;
+    }
     return cur;
   }
 }

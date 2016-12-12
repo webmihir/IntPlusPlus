@@ -1,5 +1,6 @@
 package com.webmihir.IntPlusPlus.interfaces;
 
+import com.webmihir.IntPlusPlus.interfaces.common.ListNode;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 
@@ -15,7 +16,9 @@ public abstract class Revision {
    * @param s2
    * @return
    */
-  public boolean isOneEditAway(String s1, String s2) { throw new NotImplementedException(); }
+  public boolean isOneEditAway(String s1, String s2) {
+    throw new NotImplementedException();
+  }
 
   /**
    * 2.8 (Page 95): Given a circular linked list, implement and algorithm that returns the node at the beginning of the loop.
@@ -25,14 +28,7 @@ public abstract class Revision {
    * @param head
    * @return
    */
-  public ListNode findLoop(ListNode head) { throw new NotImplementedException(); }
-
-  public class ListNode {
-    public int val;
-    public ListNode next;
-
-    public ListNode() { }
-    public ListNode(int val) { this(val, null); }
-    public ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+  public ListNode findLoop(ListNode head) {
+    throw new NotImplementedException();
   }
 }

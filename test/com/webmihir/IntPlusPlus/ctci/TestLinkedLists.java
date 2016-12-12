@@ -2,6 +2,7 @@ package com.webmihir.IntPlusPlus.ctci;
 
 import com.webmihir.IntPlusPlus.BaseTest;
 import com.webmihir.IntPlusPlus.dataproviders.CtciDataProviders;
+import com.webmihir.IntPlusPlus.interfaces.common.ListNode;
 import com.webmihir.IntPlusPlus.interfaces.ctci.LinkedLists;
 import org.testng.annotations.Test;
 
@@ -11,7 +12,7 @@ import static org.testng.Assert.*;
 public class TestLinkedLists extends BaseTest {
   @Test(dataProvider = "linkedlists", dataProviderClass = CtciDataProviders.class)
   public void testRemoveDupes(LinkedLists testClass) {
-    LinkedLists.ListNode head = new LinkedLists.ListNode(1, new LinkedLists.ListNode(2, new LinkedLists.ListNode(3, new LinkedLists.ListNode(1))));
+    ListNode head = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(1))));
     testClass.removeDupes(head);
     assertEquals(head.val, 1);
     assertEquals(head.next.val, 2);
@@ -22,7 +23,7 @@ public class TestLinkedLists extends BaseTest {
   @Test(dataProvider = "linkedlists", dataProviderClass = CtciDataProviders.class)
   public void testKthToLast(LinkedLists testClass) {
     //1 -> 2 -> 3
-    LinkedLists.ListNode head = createList(1, 2, 3);
+    ListNode head = createList(1, 2, 3);
     assertEquals(testClass.kthToLast(head, 1).val, 3);
     assertEquals(testClass.kthToLast(head, 2).val, 2);
     assertEquals(testClass.kthToLast(head, 3).val, 1);
@@ -32,8 +33,8 @@ public class TestLinkedLists extends BaseTest {
   @Test(dataProvider = "linkedlists", dataProviderClass = CtciDataProviders.class)
   public void testDeleteMiddleNode(LinkedLists testClass) {
     //1 -> 2 -> 3 -> 4
-    LinkedLists.ListNode mid = new LinkedLists.ListNode(2, new LinkedLists.ListNode(3, new LinkedLists.ListNode(4)));
-    LinkedLists.ListNode head = new LinkedLists.ListNode(1, mid);
+    ListNode mid = new ListNode(2, new ListNode(3, new ListNode(4)));
+    ListNode head = new ListNode(1, mid);
 
     testClass.deleteMiddleNode(mid);
     assertEquals(head.val, 1);
@@ -46,8 +47,8 @@ public class TestLinkedLists extends BaseTest {
   public void testPartitionList(LinkedLists testClass) {
     //TODO: add validators for the returned list
 
-    LinkedLists.ListNode head = createList(3, 5, 8, 5, 10, 2, 1);
-    LinkedLists.ListNode partitioned = testClass.partitionList(head, 5);
+    ListNode head = createList(3, 5, 8, 5, 10, 2, 1);
+    ListNode partitioned = testClass.partitionList(head, 5);
     printList(partitioned);
 
     head = createList(3, 5, 8, 5, 10, 2, 1);
@@ -66,9 +67,9 @@ public class TestLinkedLists extends BaseTest {
   @Test(dataProvider = "linkedlists", dataProviderClass = CtciDataProviders.class)
   public void testSumLists(LinkedLists testClass) {
     //Simple case
-    LinkedLists.ListNode l1 = createList(7, 1, 6);
-    LinkedLists.ListNode l2 = createList(5, 9, 2);
-    LinkedLists.ListNode exp = createList(2, 1, 9);
+    ListNode l1 = createList(7, 1, 6);
+    ListNode l2 = createList(5, 9, 2);
+    ListNode exp = createList(2, 1, 9);
     assertEquals(testClass.sumLists(l1, l2), exp);
 
     //l1 bigger than l2
@@ -87,9 +88,9 @@ public class TestLinkedLists extends BaseTest {
   //@Test(dataProvider = "linkedlists", dataProviderClass = CtciDataProviders.class)
   public void testSumLists2(LinkedLists testClass) {
     //Simple case
-    LinkedLists.ListNode l1 = createList(6, 1, 7);
-    LinkedLists.ListNode l2 = createList(2, 9, 5);
-    LinkedLists.ListNode exp = createList(9, 1, 2);
+    ListNode l1 = createList(6, 1, 7);
+    ListNode l2 = createList(2, 9, 5);
+    ListNode exp = createList(9, 1, 2);
     assertEquals(testClass.sumLists(l1, l2), exp);
 
     //l1 bigger than l2
@@ -107,7 +108,7 @@ public class TestLinkedLists extends BaseTest {
 
   @Test(dataProvider = "linkedlists", dataProviderClass = CtciDataProviders.class)
   public void testIsPalindrome(LinkedLists testClass) {
-    LinkedLists.ListNode l1 = createList(1);
+    ListNode l1 = createList(1);
     assertTrue(testClass.isPalindrome(l1));
     l1 = createList(1, 1);
     assertTrue(testClass.isPalindrome(l1));
@@ -134,12 +135,12 @@ public class TestLinkedLists extends BaseTest {
 
   @Test(dataProvider = "linkedlists", dataProviderClass = CtciDataProviders.class)
   public void testFindIntersection(LinkedLists testClass) {
-    LinkedLists.ListNode intersection = createList(5, 6, 7);
+    ListNode intersection = createList(5, 6, 7);
 
     //Same size lists
-    LinkedLists.ListNode l1 = createList(1, 2, 3, 4);
+    ListNode l1 = createList(1, 2, 3, 4);
     tail(l1).next = intersection;
-    LinkedLists.ListNode l2 = createList(1, 2, 3, 4);
+    ListNode l2 = createList(1, 2, 3, 4);
     tail(l2).next = intersection;
     assertEquals(testClass.findIntersection(l1, l2), intersection);
 
@@ -178,7 +179,7 @@ public class TestLinkedLists extends BaseTest {
   @Test(dataProvider = "linkedlists", dataProviderClass = CtciDataProviders.class)
   public void testFindLoop(LinkedLists testClass) {
     //Loop at head
-    LinkedLists.ListNode l1 = createList(1, 2, 3);
+    ListNode l1 = createList(1, 2, 3);
     tail(l1).next = l1;
     assertEquals(testClass.findLoop(l1), l1, true);
 
@@ -189,7 +190,7 @@ public class TestLinkedLists extends BaseTest {
 
     //Loop at 3rd node
     l1 = createList(1, 2, 3);
-    LinkedLists.ListNode tail = tail(l1);
+    ListNode tail = tail(l1);
     tail.next = tail;
     assertEquals(testClass.findLoop(l1), tail, true);
 

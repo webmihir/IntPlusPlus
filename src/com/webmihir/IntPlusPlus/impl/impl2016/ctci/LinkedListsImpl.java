@@ -1,5 +1,6 @@
 package com.webmihir.IntPlusPlus.impl.impl2016.ctci;
 
+import com.webmihir.IntPlusPlus.interfaces.common.ListNode;
 import com.webmihir.IntPlusPlus.interfaces.ctci.LinkedLists;
 import java.util.HashSet;
 import java.util.Set;
@@ -16,7 +17,9 @@ public class LinkedListsImpl extends LinkedLists {
   @Override
   public void removeDupes(ListNode head) {
     Set<Integer> set = new HashSet<>();
-    if (head == null) return;
+    if (head == null) {
+      return;
+    }
     set.add(head.val);
     ListNode cur = head;
     while (cur.next != null) {
@@ -40,7 +43,9 @@ public class LinkedListsImpl extends LinkedLists {
     ListNode fast = head;
     for (int i = 1; i < k; i++) {
       fast = fast.next;
-      if (fast == null) return null;
+      if (fast == null) {
+        return null;
+      }
     }
 
     ListNode curr = head;
@@ -59,7 +64,9 @@ public class LinkedListsImpl extends LinkedLists {
    */
   @Override
   public void deleteMiddleNode(ListNode node) {
-    if (node == null || node.next == null) return; //cannot be the tail node
+    if (node == null || node.next == null) {
+      return; //cannot be the tail node
+    }
 
     //copy next node's value into current node, then delete the next node
     node.val = node.next.val;
@@ -172,7 +179,9 @@ public class LinkedListsImpl extends LinkedLists {
    */
   @Override
   public boolean isPalindrome(ListNode head) {
-    if (head == null || head.next == null) return true;
+    if (head == null || head.next == null) {
+      return true;
+    }
 
     Stack<Integer> stack = new Stack<>();
     ListNode slow = head, fast = head;
@@ -183,10 +192,14 @@ public class LinkedListsImpl extends LinkedLists {
     }
 
     //handle odd case here
-    if (fast != null) slow = slow.next;
+    if (fast != null) {
+      slow = slow.next;
+    }
 
     while (slow != null) {
-      if (slow.val != stack.pop()) return false;
+      if (slow.val != stack.pop()) {
+        return false;
+      }
       slow = slow.next;
     }
     return true;
@@ -203,13 +216,18 @@ public class LinkedListsImpl extends LinkedLists {
    */
   @Override
   public ListNode findIntersection(ListNode list1, ListNode list2) {
-    if (list1 == null || list2 == null) return null;
+    if (list1 == null || list2 == null) {
+      return null;
+    }
 
     int len1 = len(list1);
     int len2 = len(list2);
 
     ListNode small = list1, big = list2;
-    if (len1 > len2) { small = list2; big = list1; }
+    if (len1 > len2) {
+      small = list2;
+      big = list1;
+    }
 
     int diff = Math.abs(len1 - len2);
     for (int i = 0; i < diff; i++) {
@@ -217,7 +235,9 @@ public class LinkedListsImpl extends LinkedLists {
     }
 
     while (small != null && big != null) {
-      if (small == big) return small;
+      if (small == big) {
+        return small;
+      }
       small = small.next;
       big = big.next;
     }
@@ -226,12 +246,13 @@ public class LinkedListsImpl extends LinkedLists {
 
   private int len(ListNode lst) {
     int len = 0;
-    while(lst != null) {
+    while (lst != null) {
       len++;
       lst = lst.next;
     }
     return len;
   }
+
   /**
    * 2.8 (Page 95): Given a circular linked list, implement and algorithm that returns the node at the beginning of the loop.
    * Example:
@@ -242,17 +263,23 @@ public class LinkedListsImpl extends LinkedLists {
    */
   @Override
   public ListNode findLoop(ListNode head) {
-    if (head == null) return null;
+    if (head == null) {
+      return null;
+    }
 
     ListNode slow = head, fast = head;
     while (fast != null && fast.next != null) {
       slow = slow.next;
       fast = fast.next.next;
-      if (slow == fast) break;
+      if (slow == fast) {
+        break;
+      }
     }
 
     //Not a looped list
-    if (fast == null || fast.next == null) return null;
+    if (fast == null || fast.next == null) {
+      return null;
+    }
 
     slow = head;
     while (slow != fast) {
