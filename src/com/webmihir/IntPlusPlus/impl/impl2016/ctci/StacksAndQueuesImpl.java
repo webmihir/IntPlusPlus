@@ -1,12 +1,16 @@
-package com.webmihir.IntPlusPlus.interfaces.ctci;
+package com.webmihir.IntPlusPlus.impl.impl2016.ctci;
 
-public class StacksAndQueues {
+import com.webmihir.IntPlusPlus.interfaces.ctci.StacksAndQueues;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
+
+public class StacksAndQueuesImpl extends StacksAndQueues {
   /**
    * 3.1 (Page 98): Describe how you could use a single array to implement three stacks
    */
   public abstract class SingleArrayForThreeStacks {
-    public abstract boolean push(int n);
-    public abstract int pop();
+    public boolean push(int n) { throw new NotImplementedException(); }
+    public int pop() { throw new NotImplementedException(); }
   }
 
   /**
@@ -14,9 +18,9 @@ public class StacksAndQueues {
    * All operations (Push, Pop, Min) should operate in O(1) time
    */
   public abstract class StackWithGetMin {
-    public abstract boolean push(int n);
-    public abstract int pop();
-    public abstract int min();
+    public boolean push(int n) { throw new NotImplementedException(); }
+    public int pop() { throw new NotImplementedException(); }
+    public int min() { throw new NotImplementedException(); }
   }
 
   /**
@@ -29,17 +33,17 @@ public class StacksAndQueues {
    * Additionally, implement a function popAt(int index) which performs a pop operation on a specific sub-stack.
    */
   public abstract class SetOfStacks {
-    public abstract boolean push(int n);
-    public abstract int pop();
-    public abstract int popAt(int index);
+    public boolean push(int n) { throw new NotImplementedException(); }
+    public int pop() { throw new NotImplementedException(); }
+    public int popAt(int index) { throw new NotImplementedException(); }
   }
 
   /**
    * 3.4 (Page 99): Implement a MyQueue class which implements a queue using two stacks
    */
   public abstract class MyQueue {
-    public abstract boolean offer(int n);
-    public abstract int poll();
+    public boolean offer(int n) { throw new NotImplementedException(); }
+    public int poll() { throw new NotImplementedException(); }
   }
 
   /**
@@ -48,10 +52,10 @@ public class StacksAndQueues {
    * The stack supports the following operations: push, pop, peek, and isEmpty
    */
   public abstract class MinStack {
-    public abstract boolean push(int n);
-    public abstract int pop();
-    public abstract int peek();
-    public abstract boolean isEmpty();
+    public boolean push(int n) { throw new NotImplementedException(); }
+    public int pop() { throw new NotImplementedException(); }
+    public int peek() { throw new NotImplementedException(); }
+    public boolean isEmpty() { throw new NotImplementedException(); }
   }
 
   /**
@@ -62,14 +66,9 @@ public class StacksAndQueues {
    * enqueue, dequeueAny, dequeueDog, dequeueCat. You may use the built-in LinkedList data structure.
    */
   public abstract class AnimalShelter {
-    public abstract boolean enqueue(Animal animal);
-    public abstract Animal dequeueAny();
-    public abstract Dog dequeueDog();
-    public abstract Cat dequeueCat();
-    public abstract class Animal {
-      public int id;
-    }
-    public class Dog extends Animal { public Dog(int id) {this.id = id;} }
-    public class Cat extends Animal { public Cat(int id) {this.id = id;}}
+    public boolean enqueue(StacksAndQueues.AnimalShelter.Animal animal) { throw new NotImplementedException(); }
+    public StacksAndQueues.AnimalShelter.Animal dequeueAny() { throw new NotImplementedException(); }
+    public StacksAndQueues.AnimalShelter.Dog dequeueDog() { throw new NotImplementedException(); }
+    public StacksAndQueues.AnimalShelter.Cat dequeueCat() { throw new NotImplementedException(); }
   }
 }

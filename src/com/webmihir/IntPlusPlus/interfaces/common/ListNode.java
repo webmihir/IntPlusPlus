@@ -1,5 +1,8 @@
 package com.webmihir.IntPlusPlus.interfaces.common;
 
+/**
+ * Represents a node in a Singly Linked List
+ */
 public class ListNode {
   public ListNode next;
   public int val;
