@@ -1,5 +1,6 @@
 package com.webmihir.IntPlusPlus;
 
+import com.webmihir.IntPlusPlus.interfaces.ctci.LinkedLists;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 import java.util.Arrays;
@@ -7,6 +8,8 @@ import org.testng.Assert;
 import org.testng.SkipException;
 import org.testng.annotations.BeforeMethod;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
+import static org.testng.Assert.*;
 
 
 public class BaseTest {
@@ -68,5 +71,50 @@ public class BaseTest {
 
   protected void assertEquals(long actual, long expected) {
     Assert.assertEquals(actual, expected);
+  }
+
+  protected void assertEquals(LinkedLists.ListNode actual, LinkedLists.ListNode expected) {
+    LinkedLists.ListNode l1 = actual, l2 = expected;
+
+    while (l1 != null && l2 != null) {
+      assertEquals(l1.val, l2.val);
+      l1 = l1.next;
+      l2 = l2.next;
+    }
+
+    assertTrue(l1 == null);
+    assertTrue(l2 == null);
+  }
+
+  protected void assertEquals(LinkedLists.ListNode actual, LinkedLists.ListNode expected, boolean singleNode) {
+    if (singleNode) assertTrue(actual == expected);
+    else assertEquals(actual, expected);
+  }
+
+  public void printList(LinkedLists.ListNode head) {
+    System.out.print("List: ");
+
+    if (head == null) {
+      System.out.println("<empty>");
+      return;
+    }
+    System.out.print(head.toString());
+    System.out.println();
+  }
+
+  protected LinkedLists.ListNode createList(int headVal, int... vals) {
+    LinkedLists.ListNode head = new LinkedLists.ListNode(headVal);
+    LinkedLists.ListNode prev = head;
+    for (int val : vals) {
+      prev.next = new LinkedLists.ListNode(val);
+      prev = prev.next;
+    }
+    return head;
+  }
+
+  protected LinkedLists.ListNode tail(LinkedLists.ListNode head) {
+    LinkedLists.ListNode cur = head;
+    while (cur.next != null) cur = cur.next;
+    return cur;
   }
 }

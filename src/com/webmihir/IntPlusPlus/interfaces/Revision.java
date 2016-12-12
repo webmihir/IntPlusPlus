@@ -16,4 +16,23 @@ public abstract class Revision {
    * @return
    */
   public boolean isOneEditAway(String s1, String s2) { throw new NotImplementedException(); }
+
+  /**
+   * 2.8 (Page 95): Given a circular linked list, implement and algorithm that returns the node at the beginning of the loop.
+   * Example:
+   * Input: 1 -> 2 -> 3 -> 4 -> 5 -> 3 (the same 3 as earlier by reference)
+   * Output: 3
+   * @param head
+   * @return
+   */
+  public ListNode findLoop(ListNode head) { throw new NotImplementedException(); }
+
+  public class ListNode {
+    public int val;
+    public ListNode next;
+
+    public ListNode() { }
+    public ListNode(int val) { this(val, null); }
+    public ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+  }
 }

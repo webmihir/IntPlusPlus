@@ -9,17 +9,18 @@ public abstract class LinkedLists {
    * How would you solve this problem if a temporary buffer was not allowed
    * @param head
    */
-  public void remoteDupes(ListNode head) { throw new NotImplementedException(); }
+  public void removeDupes(ListNode head) { throw new NotImplementedException(); }
 
   /**
    * 2.2 (Page 94): Implement an algorithm to find the k-th to last element of a singly linked list
    * @param head
+   * @param k
    * @return
    */
-  public ListNode kthToLast(ListNode head)  { throw new NotImplementedException(); }
+  public ListNode kthToLast(ListNode head, int k)  { throw new NotImplementedException(); }
 
   /**
-   * 2.3 (Page 94): Implement an algorithm to delete a node in the moddle of a singly linked list
+   * 2.3 (Page 94): Implement an algorithm to delete a node in the middle of a singly linked list
    * given access to only that node
    * @param node
    */
@@ -34,15 +35,16 @@ public abstract class LinkedLists {
    * Output: 3 -> 1 -> 2 -> 10 -> 5 -> 5-> 8
    * @param head
    * @param val
+   * @return
    */
-  public void partitionList(ListNode head, int val) { throw new NotImplementedException(); }
+  public ListNode partitionList(ListNode head, int val) { throw new NotImplementedException(); }
 
   /**
    * 2.5 (Page 94): You have two numbers represented by a LinkedList, where each node contains a single digit.
    * The digts are stored in reverse order, such that the 1's digit is at the head of the list.
    * Write a function that adds the two numbers and returns the sum as a Linked List.
    * Example:
-   * Input (7 -> 1 -> 6) + (5 -> 9 -> 2). i.e. 617+285 = 912
+   * Input (7 -> 1 -> 6) + (5 -> 9 -> 2). i.e. 617+295 = 912
    * Output (2 -> 1 -> 9)
    *
    * @param list1
@@ -87,8 +89,39 @@ public abstract class LinkedLists {
    */
   public ListNode findLoop(ListNode head) { throw new NotImplementedException(); }
 
-  public class ListNode {
-    ListNode next;
-    int val;
+  public static class ListNode {
+    public ListNode next;
+    public int val;
+
+    public ListNode() { }
+
+    public ListNode(int val) {
+      this(val, null);
+    }
+
+    public ListNode(int val, ListNode next) {
+      this.val = val;
+      this.next = next;
+    }
+
+    @Override
+    public String toString() {
+      StringBuilder sb = new StringBuilder();
+      sb.append(this.val);
+      ListNode next = this.next;
+      ListNode fast = (next == null) ? null : next.next;
+      while (next != null) {
+        sb.append(" --> ");
+        sb.append(next.val);
+        next = next.next;
+        if (fast != null) fast = fast.next;
+        if (fast != null) fast = fast.next;
+        if (next == fast || fast.next == next) {
+          sb = new StringBuilder("<Looped List>");
+          break;
+        }
+      }
+      return sb.toString();
+    }
   }
 }

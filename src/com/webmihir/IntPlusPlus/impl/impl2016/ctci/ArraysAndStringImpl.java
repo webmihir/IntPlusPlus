@@ -208,13 +208,35 @@ public class ArraysAndStringImpl extends ArraysAndStrings {
 
   /**
    * 1.7 (Page 91): Given an image represented by an NxN matrix, where each pixel in the image is 4 bytes,
-   * write a method to rotate the image by 90 degrees. Can you do this in place?
+   * write a method to rotate-right the image by 90 degrees. Can you do this in place?
 
    * @param matrix
    */
   @Override
   public void rotateMatrix(int[][] matrix) {
-    super.rotateMatrix(matrix);
+    int n = matrix.length;
+    for (int layer = 0; layer < n/2; layer++) {
+      int first = layer;
+      int last = n - layer - 1;
+      for (int i = first; i < last; i++) {
+        int offset = i - first;
+
+        //save top
+        int top = matrix[first][i];
+
+        //left -> top
+        matrix[first][i] = matrix[last-offset][first];
+
+        //bottom -> left
+        matrix[last-offset][first] = matrix[last][last-offset];
+
+        //right -> bottom
+        matrix[last][last-offset] = matrix[i][last];
+
+        //top -> right
+        matrix[i][last] = top;
+      }
+    }
   }
 
   /**

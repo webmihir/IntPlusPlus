@@ -83,7 +83,7 @@ public abstract class ArraysAndStrings {
 
   /**
    * 1.7 (Page 91): Given an image represented by an NxN matrix, where each pixel in the image is 4 bytes,
-   * write a method to rotate the image by 90 degrees. Can you do this in place?
+   * write a method to rotate-right the image by 90 degrees. Can you do this in place?
    * @param matrix
    */
   public void rotateMatrix(int[][] matrix) {
