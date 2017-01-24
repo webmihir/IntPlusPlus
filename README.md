@@ -43,7 +43,9 @@ Use the following resources to prepare for SWE interviews. Note that this is not
   + http://winterbe.com/posts/2015/04/07/java8-concurrency-tutorial-thread-executor-examples/
 
 - Graphs:
-
+  + Top Coder - https://www.topcoder.com/community/data-science/data-science-tutorials/introduction-to-graphs-and-their-data-structures-section-1/
+  + DFS Traversal - Most suited for problems where you want to visit all nodes in graph to find a solution, but not necessarily the shortest path
+  
 # Few Tips:
 - For questions with recursive solution, practice the iterative solution too. This is a common Interview variation
 - Calculate the Big-O notation for space & time complexity for all questions.

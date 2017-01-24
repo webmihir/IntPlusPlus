@@ -8,8 +8,10 @@ public class StacksAndQueuesImpl extends StacksAndQueues {
   /**
    * 3.1 (Page 98): Describe how you could use a single array to implement three stacks
    */
-  public abstract class SingleArrayForThreeStacks {
-    public boolean push(int n) { throw new NotImplementedException(); }
+  public abstract class SingleArrayForThreeStacksImpl extends SingleArrayForThreeStacks {
+    public boolean push(int n) {
+      throw new NotImplementedException(); }
+
     public int pop() { throw new NotImplementedException(); }
   }
 
@@ -18,9 +20,17 @@ public class StacksAndQueuesImpl extends StacksAndQueues {
    * All operations (Push, Pop, Min) should operate in O(1) time
    */
   public abstract class StackWithGetMin {
-    public boolean push(int n) { throw new NotImplementedException(); }
-    public int pop() { throw new NotImplementedException(); }
-    public int min() { throw new NotImplementedException(); }
+    public boolean push(int n) {
+      throw new NotImplementedException();
+    }
+
+    public int pop() {
+      throw new NotImplementedException();
+    }
+
+    public int min() {
+      throw new NotImplementedException();
+    }
   }
 
   /**
