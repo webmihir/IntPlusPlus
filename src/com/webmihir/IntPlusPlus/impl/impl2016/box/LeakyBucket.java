@@ -14,18 +14,6 @@ public class LeakyBucket {
   private final long _rateDenominator;
   private final Clock _clock;
 
-  public LeakyBucket(long capacity, long rateNumerator, long rateDenominator, Clock clock) {
-    assert capacity > 0;
-    assert rateDenominator > 0;
-    assert rateNumerator > 0;
-    assert clock != null;
-
-    this._capacity = capacity;
-    this._rateDenominator = rateDenominator;
-    this._rateNumerator = rateNumerator;
-    _clock = clock;
-  }
-
   public LeakyBucket(long capacity, long rate, Duration rateOver, Clock clock) {
     assert capacity > 0;
     assert rate > 0;
@@ -46,9 +34,9 @@ public class LeakyBucket {
       _lastTimeStamp = currentTime;
     } else if (timeElapsed >= _rateDenominator) {
       long requestsServed = (timeElapsed / _rateDenominator) * _rateNumerator;
-      _balanceTicks = (timeElapsed % _capacity);
 
       _numRequestsPending = Math.max(0, _numRequestsPending - requestsServed);
+      _balanceTicks = _numRequestsPending > 0 ? (timeElapsed % _capacity) : 0L;
       _lastTimeStamp = currentTime;
     }
 
