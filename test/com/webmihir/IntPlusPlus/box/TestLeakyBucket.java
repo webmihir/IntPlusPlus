@@ -19,7 +19,8 @@ public class TestLeakyBucket {
   @Test
   public void testRateLimiter() throws Exception {
     //Create a rate limiter for 1 requests per 3 millis
-    LeakyBucket testClass = new LeakyBucket(3L, 1L, Duration.ofMillis(3L), _mockClock);
+    LeakyBucket.Rate rate = new LeakyBucket.Rate(1L, Duration.ofMillis(3L));
+    LeakyBucket testClass = new LeakyBucket(3L, rate, _mockClock);
 
     //t = 1, send 3 requests
     when(_mockClock.millis()).thenReturn(1L);
@@ -50,7 +51,8 @@ public class TestLeakyBucket {
   @Test
   public void testRateLimiter2() throws Exception {
     //Create a rate limiter for 1 requests per 3 millis
-    LeakyBucket testClass = new LeakyBucket(3L, 1L, Duration.ofMillis(3L), _mockClock);
+    LeakyBucket.Rate rate = new LeakyBucket.Rate(1L, Duration.ofMillis(3L));
+    LeakyBucket testClass = new LeakyBucket(3L, rate, _mockClock);
 
     //t = 1, send 3 requests
     when(_mockClock.millis()).thenReturn(1L);
