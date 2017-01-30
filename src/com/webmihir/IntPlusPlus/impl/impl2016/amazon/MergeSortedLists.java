@@ -4,7 +4,7 @@ import com.webmihir.IntPlusPlus.interfaces.common.ListNode;
 
 
 /**
- * #21: 	Merge Two Sorted Lists
+ * #21 (easy): 	Merge Two Sorted Lists
  * https://leetcode.com/problems/merge-two-sorted-lists/
  * https://discuss.leetcode.com/category/29/merge-two-sorted-lists
  *

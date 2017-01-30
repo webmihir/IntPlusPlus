@@ -4,7 +4,7 @@ import com.webmihir.IntPlusPlus.interfaces.common.TreeNode;
 
 
 /**
- * #235: 	Lowest Common Ancestor of a Binary Search Tree
+ * #235 (easy): 	Lowest Common Ancestor of a Binary Search Tree
  * https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/
  * https://discuss.leetcode.com/category/291
  *
